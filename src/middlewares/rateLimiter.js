@@ -1,0 +1,51 @@
+const rateLimit = require('express-rate-limit');
+
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    success: false,
+    error: 'Too many requests from this IP, please try again after 15 minutes'
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+//authentication routes
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30, // Limit each IP to 30 login attempts per 15 minutes
+  message: {
+    success: false,
+    error: 'Too many login attempts, please try again after 15 minutes'
+  },
+  skipSuccessfulRequests: false, 
+});
+
+// Admin registration limiter 
+const adminRegisterLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 30, // Only 30 attempts per hour
+  message: {
+    success: false,
+    error: 'Too many admin registration attempts. Try again later.'
+  },
+});
+
+// Transaction creation limiter
+const transactionLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 20, // 20 transactions per minute
+  message: {
+    success: false,
+    error: 'Too many transactions created. Please slow down.'
+  },
+});
+
+module.exports = {
+  apiLimiter,
+  authLimiter,
+  adminRegisterLimiter,
+  transactionLimiter
+};
