@@ -36,7 +36,7 @@ const adminRegisterLimiter = rateLimit({
 // Transaction creation limiter
 const transactionLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 10, // 10 transactions per minute
+  max: 40, // 40 transactions per minute
   message: {
     success: false,
     error: 'Too many transactions created. Please slow down.'
