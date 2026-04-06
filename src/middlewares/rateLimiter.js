@@ -15,7 +15,7 @@ const apiLimiter = rateLimit({
 //authentication routes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 30, // Limit each IP to 30 login attempts per 15 minutes
+  max: 20, // Limit each IP to 20 login attempts per 15 minutes
   message: {
     success: false,
     error: 'Too many login attempts, please try again after 15 minutes'
@@ -26,7 +26,7 @@ const authLimiter = rateLimit({
 // Admin registration limiter 
 const adminRegisterLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 30, // Only 30 attempts per hour
+  max: 15, // Only 15 attempts per hour
   message: {
     success: false,
     error: 'Too many admin registration attempts. Try again later.'
@@ -36,7 +36,7 @@ const adminRegisterLimiter = rateLimit({
 // Transaction creation limiter
 const transactionLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 20, // 20 transactions per minute
+  max: 10, // 10 transactions per minute
   message: {
     success: false,
     error: 'Too many transactions created. Please slow down.'
