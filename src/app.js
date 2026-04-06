@@ -47,9 +47,9 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     rateLimits: {
       general: '100 requests per 15 minutes',
-      authentication: '5 attempts per 15 minutes',
-      adminRegistration: '3 attempts per hour',
-      transactions: '10 per minute'
+      authentication: '20 attempts per 15 minutes',
+      adminRegistration: '15 attempts per hour',
+      transactions: '40 per minute'
     },
     endpoints: {
       authentication: {
@@ -119,9 +119,9 @@ connectDB().then(() => {
     console.log('   Password: Admin@123');
     console.log('\n Rate Limits Active:');
     console.log('   • General API: 100 requests/15min');
-    console.log('   • Authentication: 5 attempts/15min');
-    console.log('   • Admin Registration: 3 attempts/hour');
-    console.log('   • Transactions: 10 requests/minute');
+    console.log('   • Authentication: 20 attempts/15min');
+    console.log('   • Admin Registration: 15 attempts/hour');
+    console.log('   • Transactions: 40 requests/minute');
     console.log('\n Security Features:');
     console.log('   • JWT Authentication');
     console.log('   • Password Hashing (bcrypt)');
